@@ -3,7 +3,7 @@
 1. Login screen with Id and password
 2. Validation rules over validity of inputs
 3. Auth guards over correct inputs
-4. After successful login might redirect to internal page with lost of users, every user have to contain:
+4. After successful login might redirect to internal page with list of users, every user have to contain:
     - First name
     - Last name
     - Id
@@ -32,14 +32,6 @@ Every git push triggers Travis CI to re-build whole app, and current status is:
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -51,4 +43,4 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+**this is test-only project no any further will be provided, ever** 
