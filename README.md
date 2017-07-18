@@ -1,8 +1,31 @@
-# ClalitLikeLogin
+# Arkia test application
+## requirements:
+1. Login screen with Id and password
+2. Validation rules over validity of inputs
+3. Auth guards over correct inputs
+4. After successful login might redirect to internal page with lost of users, every user have to contain:
+    - First name
+    - Last name
+    - Id
+    - email
+5. Have to add ability to edit/delete each user
+
+### overall:
+- The app is Angular 2+ based
+ - have to be responsive
+
+- might keep look and feel like given [example](https://e-services.clalit.org.il/onlineweb/general/Login.aspx)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
 
+This project hosts on [Firebase](https://clalit-like-login.firebaseapp.com/login) platform.
+
+Navigate to `https://clalit-like-login.firebaseapp.com/` 
+or
+ `https://clalit-like-login.firebaseapp.com/login` in order to see an app
 ## Current build status 
+Every git push triggers Travis CI to re-build whole app, and current status is:
+
 [![Build Status](https://travis-ci.org/dlevkov/Arkia-clalit-like-login.svg?branch=master)](https://travis-ci.org/dlevkov/Arkia-clalit-like-login)
 
 ## Development server
