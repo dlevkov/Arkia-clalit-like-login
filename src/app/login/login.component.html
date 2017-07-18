@@ -5,27 +5,34 @@
   </md-card-header>
   <md-card-content>
     <br>
-    <form class="login-form" [formGroup]="loginForm" novalidate>
+    <form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm" novalidate>
       <md-input-container class="user-id">
-        <input #userId mdInput
-        placeholder="מספר תעודת זהות"
-        formControlName="id"
-        maxlength="9"
-        type="number">
-        <md-error>יש להזין תעודת זהות</md-error>
-        <md-error>מבנה תעודת הזהות שהזנת אינו תקין</md-error>
+        <input #userId mdInput placeholder="מספר תעודת זהות" formControlName="id" type="number">
+        <md-error *ngIf="loginForm.get('id').hasError('required') && loginForm.get('id').touched">
+          יש להזין תעודת זהות
+        </md-error>
+        <md-error *ngIf="loginForm.get('id').hasError('illegal') && loginForm.get('id').touched">
+          מבנה תעודת הזהות שהזנת אינו תקין
+        </md-error>
         <md-hint align='end'>{{userId.value.length}} / 9</md-hint>
       </md-input-container>
       <br>
       <md-input-container class="user-password">
         <input mdInput placeholder="סיסמה" formControlName="password">
-        <md-error>השדה "סיסמה" הוא שדה חובה</md-error>
-        <md-error>הסיסמה לא תקינה. הזן בין 8 ל־10 תווים (אותיות באנגלית עם מספרים).</md-error>
+        <md-error *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+          השדה "סיסמה" הוא שדה חובה
+        </md-error>
+        <md-error *ngIf="(loginForm.get('password').hasError('maxlength') || loginForm.get('password').hasError('minlength')) && loginForm.get('password').touched">
+          הסיסמה לא תקינה. הזן בין 8 ל־10 תווים (אותיות באנגלית עם מספרים).
+        </md-error>
+        <md-error *ngIf="loginForm.get('password').hasError('illegal') && loginForm.get('password').touched">
+          הסיסמה לא תקינה. (אותיות באנגלית עם מספרים).
+        </md-error>
       </md-input-container>
     </form>
   </md-card-content>
   <md-card-actions>
-    <button md-raised-button color='primary'>כניסה</button>
+    <button md-raised-button color='primary' type="submit" [disabled]="loginForm.invalid">כניסה</button>
     <button md-raised-button color='accent'>חדש! קוד חד-פעמי במסרון</button>
   </md-card-actions>
 </md-card>

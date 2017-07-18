@@ -10,6 +10,7 @@ export class OnlyLoggedInUsersGuard implements CanActivateChild {
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    console.log('guard activated');
     return this.userService.isLoggedIn();
   }
 }
