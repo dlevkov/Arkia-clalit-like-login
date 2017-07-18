@@ -8,11 +8,15 @@ import { MaterialsModule } from './materials/materials.module';
 import 'hammerjs';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsersListComponent } from './users-list/users-list.component';
+import { UsersService } from './services/users.service';
+import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [UsersService, OnlyLoggedInUsersGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
