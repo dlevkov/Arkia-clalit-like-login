@@ -23,11 +23,13 @@ export class LoginComponent implements OnInit {
           idLegalityValidator
         ]
       )],
-      password: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(10),
-      ]), passwordLegalityValidator]
+      password: ['', Validators.compose(
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(10),
+        ]
+      ), passwordLegalityValidator]
     });
   }
   onSubmit() {
@@ -35,5 +37,14 @@ export class LoginComponent implements OnInit {
     currentUser.id = this.loginForm.value('id');
     currentUser.password = this.loginForm.value('password');
     const result = this.users.tryLogIn(currentUser.id, currentUser.password);
+    if (result) {
+      this.clearForm();
+
+    } else {
+      this.loginForm.setErrors({ 'submitError': true });
+    }
+  }
+  private clearForm() {
+    this.createForm();
   }
 }

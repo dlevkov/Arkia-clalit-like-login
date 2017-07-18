@@ -28,7 +28,7 @@ export function idLegalityValidator(c: AbstractControl): { [key: string]: boolea
 }
 export class LoginValidators {
 
-  public static validateId(id: string): boolean {
+  static validateId(id: string): boolean {
     let mone = 0;
     let incNum: number;
     for (let i = 0; i < 9; i++) {
@@ -42,7 +42,7 @@ export class LoginValidators {
     return mone % 10 === 0;
   }
 
-  public static validatePassword(password: string): Observable<{ [key: string]: boolean } | null> {
+  static validatePassword(password: string): Observable<{ [key: string]: boolean } | null> {
     const regex = new RegExp('/^[a-zA-Z0-9]+$/');
     return new Observable(observer => {
       if (regex.test(password)) {

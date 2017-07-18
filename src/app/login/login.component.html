@@ -11,7 +11,7 @@
         <md-error *ngIf="loginForm.get('id').hasError('required') && loginForm.get('id').touched">
           יש להזין תעודת זהות
         </md-error>
-        <md-error *ngIf="loginForm.get('id').hasError('illegal') && loginForm.get('id').touched">
+        <md-error *ngIf="loginForm.get('id').hasError('illegal') && loginForm.get('id').touched && !loginForm.get('id').hasError('required')">
           מבנה תעודת הזהות שהזנת אינו תקין
         </md-error>
         <md-hint align='end'>{{userId.value.length}} / 9</md-hint>
@@ -29,6 +29,11 @@
           הסיסמה לא תקינה. (אותיות באנגלית עם מספרים).
         </md-error>
       </md-input-container>
+      <div class="login-progress" *ngIf="loginForm.controls['password'].pending">
+        <md-progress-bar color="accent" mode="indeterminate"></md-progress-bar>
+        <p>בדיקה אסנכרונית בתהליך</p>
+      </div>
+
     </form>
   </md-card-content>
   <md-card-actions>

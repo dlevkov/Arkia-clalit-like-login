@@ -16,6 +16,10 @@
   background-size: cover;
 }
 
+.login-progress {
+  width: 80%;
+}
+
 md-input-container {
   width: 90%;
 }
