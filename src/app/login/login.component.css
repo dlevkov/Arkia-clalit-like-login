@@ -1,0 +1,26 @@
+:host {
+  width: 90%;
+  align-items: center;
+  background-color: blue;
+  font-family: 'Open Sans Hebrew', Arial, sans-serif;
+  font-style: normal;
+}
+
+.login-card {
+  width: 90%;
+  direction: rtl;
+}
+
+.login-header-image {
+  background-image: url('https://lh3.googleusercontent.com/PI0SeR50Bi6BRvcxlZEiFhonaEkfMwE9z9BCtBrVsy7anaeXZuPq3NcGLjrKNO2HLD-u=w300');
+  background-size: cover;
+}
+
+md-input-container {
+  width: 90%;
+}
+
+md-card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
