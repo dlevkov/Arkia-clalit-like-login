@@ -12,13 +12,15 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { UsersService } from './services/users.service';
 import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
 import { UserCardComponent } from './users-list/user-card.component';
+import { UserEditComponent } from './users-list/user-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UsersListComponent,
-    UserCardComponent
+    UserCardComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
