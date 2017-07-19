@@ -7,7 +7,9 @@ import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersListComponent, canActivate: [OnlyLoggedInUsersGuard] }
+  { path: 'users', component: UsersListComponent, pathMatch: 'full', canActivate: [OnlyLoggedInUsersGuard] },
+  { path: 'user', component: UsersListComponent, canActivate: [OnlyLoggedInUsersGuard] },
+  { path: 'user:id', component: UsersListComponent, canActivate: [OnlyLoggedInUsersGuard] }
 ];
 
 @NgModule({
