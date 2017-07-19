@@ -11,12 +11,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UsersService } from './services/users.service';
 import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
+import { UserCardComponent } from './users-list/user-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    UsersListComponent
+    UsersListComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,
