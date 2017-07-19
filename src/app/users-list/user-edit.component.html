@@ -1,3 +1,41 @@
-<p>
-  user-edit works!
-</p>
+<md-card class='login-card'>
+  <md-card-header>
+    <div md-card-avatar class='login-header-image'></div>
+    <md-card-title color='primary'>Edit Page</md-card-title>
+  </md-card-header>
+  <form class="login-form" [formGroup]="userForm" novalidate>
+    <md-card-content>
+      <br>
+      <md-input-container class="user-id">
+        <input #userId mdInput placeholder="מספר תעודת זהות" formControlName="id">
+      </md-input-container>
+      <br>
+      <md-input-container class="user-password">
+        <input mdInput placeholder="סיסמה" formControlName="password">
+      </md-input-container>
+      <br>
+      <md-input-container class="user-fName">
+        <input mdInput placeholder="שם פרטי" formControlName="fName">
+      </md-input-container>
+      <br>
+      <md-input-container class="user-lName">
+        <input mdInput placeholder="שם משפחה" formControlName="lName">
+      </md-input-container>
+      <br>
+      <md-input-container class="user-eMail">
+        <input mdInput placeholder="מייל" formControlName="eMail">
+      </md-input-container>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button color='primary' (click)="onSubmit()" type="submit" [disabled]="!formChanged">
+        <i class="material-icons">save</i>שמור
+      </button>
+      <button md-raised-button color='accent' (click)="onCancel()" [disabled]="!formChanged">
+        <i class="material-icons">undo</i>בטל
+      </button>
+      <button md-raised-button color='warn' [disabled]="formChanged" (click)="onBackToMain()">
+        <i class="material-icons">reply</i>חזרה לרשימה
+      </button>
+    </md-card-actions>
+  </form>
+</md-card>

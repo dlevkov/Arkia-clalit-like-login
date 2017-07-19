@@ -13,6 +13,7 @@ import { UsersService } from './services/users.service';
 import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
 import { UserCardComponent } from './users-list/user-card.component';
 import { UserEditComponent } from './users-list/user-edit.component';
+import { UserResolver } from './services/user.resolver';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { UserEditComponent } from './users-list/user-edit.component';
     MaterialsModule,
     ReactiveFormsModule
   ],
-  providers: [UsersService, OnlyLoggedInUsersGuard],
+  providers: [UsersService, OnlyLoggedInUsersGuard, UserResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

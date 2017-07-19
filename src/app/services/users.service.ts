@@ -24,18 +24,24 @@ export class UsersService {
   public addUser(user: UserModel): Observable<UserModel> {
     const tmpUser = new LoggedUser(user);
     this.users.push(tmpUser);
-    return Observable.of(this.getUserById(user.id));
+    return Observable.of(this._getUserById(user.id));
   }
 
   public getUsers(): Observable<LoggedUser[]> {
     return Observable.of(this.users);
   }
 
+  public getUserById(id: string): Observable<LoggedUser> {
+    return Observable.of(this._getUserById(id));
+  }
+
   public updateUser(user: UserModel): Observable<UserModel> {
+    console.log('update on:', user);
     // tslint:disable-next-line:triple-equals
     const index = this.users.findIndex(us => us.id == user.id);
+    console.log('index on:', index);
     this.users[index] = new LoggedUser(user);
-    return Observable.of(this.getUserById(user.id));
+    return Observable.of(this._getUserById(user.id));
   }
 
   public deleteUser(userId: string): Observable<UserModel> {
@@ -57,7 +63,7 @@ export class UsersService {
 
   tryLogIn(id: string, password: string): boolean {
     console.log('try login with', id, password);
-    const foundUser = this.getUserById(id);
+    const foundUser = this._getUserById(id);
     console.log('user:', foundUser);
     if (isNullOrUndefined(foundUser)) {
       return false;
@@ -68,7 +74,8 @@ export class UsersService {
     }
     return false;
   }
-  private getUserById(id: string): LoggedUser {
+
+  private _getUserById(id: string): LoggedUser {
     console.log('get user by id with:', id);
     console.log('users:', this.users);
     // tslint:disable-next-line:triple-equals
