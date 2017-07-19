@@ -8,10 +8,25 @@
       <br>
       <md-input-container class="user-id">
         <input #userId mdInput placeholder="מספר תעודת זהות" formControlName="id">
+        <md-error *ngIf="userForm.get('id').hasError('required') && userForm.get('id').touched">
+          יש להזין תעודת זהות
+        </md-error>
+        <md-error *ngIf="userForm.get('id').hasError('illegal') && userForm.get('id').touched && !userForm.get('id').hasError('required')">
+          מבנה תעודת הזהות שהזנת אינו תקין
+        </md-error>
       </md-input-container>
       <br>
       <md-input-container class="user-password">
-        <input mdInput placeholder="סיסמה" formControlName="password">
+        <input mdInput placeholder="סיסמה" formControlName="password" type="password">
+        <md-error *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched">
+          השדה "סיסמה" הוא שדה חובה
+        </md-error>
+        <md-error *ngIf="(userForm.get('password').hasError('maxlength') || userForm.get('password').hasError('minlength')) && userForm.get('password').touched">
+          הסיסמה לא תקינה. הזן בין 8 ל־10 תווים (אותיות באנגלית עם מספרים).
+        </md-error>
+        <md-error *ngIf="userForm.get('password').hasError('illegal') && userForm.get('password').touched">
+          הסיסמה לא תקינה. (אותיות באנגלית עם מספרים).
+        </md-error>
       </md-input-container>
       <br>
       <md-input-container class="user-fName">
@@ -24,10 +39,19 @@
       <br>
       <md-input-container class="user-eMail">
         <input mdInput placeholder="מייל" formControlName="eMail">
+        <md-error *ngIf="userForm.get('eMail').hasError('pattern') && userForm.get('eMail').touched">
+          מייל אינו חוקי
+        </md-error>
       </md-input-container>
+      <br>
+      <br>
+      <div class="login-progress" *ngIf="userForm.controls['password'].pending">
+        <md-progress-bar color="accent" mode="indeterminate"></md-progress-bar>
+        <p>בדיקה אסנכרונית בתהליך</p>
+      </div>
     </md-card-content>
     <md-card-actions>
-      <button md-raised-button color='primary' (click)="onSubmit()" type="submit" [disabled]="!formChanged">
+      <button md-raised-button color='primary' (click)="onSubmit()" type="submit" [disabled]="!formChanged || userForm.invalid">
         <i class="material-icons">save</i>שמור
       </button>
       <button md-raised-button color='accent' (click)="onCancel()" [disabled]="!formChanged">

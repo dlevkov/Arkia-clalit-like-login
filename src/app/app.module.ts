@@ -14,6 +14,7 @@ import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
 import { UserCardComponent } from './users-list/user-card.component';
 import { UserEditComponent } from './users-list/user-edit.component';
 import { UserResolver } from './services/user.resolver';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UserResolver } from './services/user.resolver';
     LoginComponent,
     UsersListComponent,
     UserCardComponent,
-    UserEditComponent
+    UserEditComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
