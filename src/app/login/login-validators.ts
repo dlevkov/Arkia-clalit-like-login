@@ -28,18 +28,20 @@ export function idLegalityValidator(c: AbstractControl): { [key: string]: boolea
 }
 export class LoginValidators {
 
-  static validateId(id: string): boolean {
-    let mone = 0;
-    let incNum: number;
-    for (let i = 0; i < 9; i++) {
-      incNum = parseInt(id[i], 10);
-      incNum *= (i % 2) + 1;
-      if (incNum > 9) {
-        incNum -= 9;
-      }
-      mone += incNum;
-    }
-    return mone % 10 === 0;
+  static validateId(idParam: string): boolean {
+
+    let id = String(idParam).trim();
+
+    // Pad string with zeros up to 9 digits
+    id = id.length < 9 ? ('00000000' + id).slice(-9) : id;
+
+    return Array.from(id, Number)
+      .reduce((counter, digit, i) => {
+        const step = digit * ((i % 2) + 1);
+        return counter + (step > 9 ? step - 9 : step);
+      }) % 10 === 0;
+
+
   }
 
   static validatePassword(password: string): Observable<{ [key: string]: boolean } | null> {

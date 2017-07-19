@@ -3,9 +3,9 @@
     <div md-card-avatar class='login-header-image'></div>
     <md-card-title color='primary'>כניסה לתיק הרפואי שלך</md-card-title>
   </md-card-header>
-  <md-card-content>
-    <br>
-    <form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm" novalidate>
+  <form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm" novalidate>
+    <md-card-content>
+      <br>
       <md-input-container class="user-id">
         <input #userId mdInput placeholder="מספר תעודת זהות" formControlName="id" type="number">
         <md-error *ngIf="loginForm.get('id').hasError('required') && loginForm.get('id').touched">
@@ -33,11 +33,10 @@
         <md-progress-bar color="accent" mode="indeterminate"></md-progress-bar>
         <p>בדיקה אסנכרונית בתהליך</p>
       </div>
-
-    </form>
-  </md-card-content>
-  <md-card-actions>
-    <button md-raised-button color='primary' type="submit" [disabled]="loginForm.invalid">כניסה</button>
-    <button md-raised-button color='accent'>חדש! קוד חד-פעמי במסרון</button>
-  </md-card-actions>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button color='primary' type="submit" [disabled]="loginForm.invalid">כניסה</button>
+      <button md-raised-button color='accent'>חדש! קוד חד-פעמי במסרון</button>
+    </md-card-actions>
+  </form>
 </md-card>

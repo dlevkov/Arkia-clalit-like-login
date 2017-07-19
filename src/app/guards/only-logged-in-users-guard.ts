@@ -1,16 +1,17 @@
-import { CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { UsersService } from '../services/users.service';
 
 
 @Injectable()
-export class OnlyLoggedInUsersGuard implements CanActivateChild {
+export class OnlyLoggedInUsersGuard implements CanActivate {
 
   constructor(private userService: UsersService) {
   }
 
-  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log('guard activated');
-    return this.userService.isLoggedIn();
+  canActivate(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    console.log('guard activated on:', this.userService.currentUser);
+    return true;
+    // return this.userService.isLoggedIn();
   }
 }

@@ -1,0 +1,10 @@
+.mail-content {
+  font-size: large;
+}
+
+.aligned-floated-button {
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  left: 85%;
+}

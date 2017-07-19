@@ -1,3 +1,24 @@
-<p>
-  users-list works!
-</p>
+<h1>Users List</h1>
+<div layout="row" flex>
+  <div layout="row" flex>
+    <div class="parent" layout="row" *ngFor="let user of users" flex>
+      <md-card>
+        <md-card-content>
+        <h2><i class="material-icons">account_box</i> {{user.firstName}} {{user.lastName}}</h2>
+          <div class="mail-content">
+            <i class="material-icons">mail</i><strong> {{user.eMail}}</strong>
+          </div>
+        </md-card-content>
+        <md-card-actions>
+          <div class="md-actions" layout="row" layout-align="start center">
+            <button md-raised-button color='primary'><i class="material-icons">create</i>Edit</button>
+            <button md-raised-button color='warn'><i class="material-icons">delete_forever</i>Delete</button>
+          </div>
+        </md-card-actions>
+      </md-card>
+      <br>
+    </div>
+  </div>
+</div>
+
+  <button class="aligned-floated-button" md-fab color='accent'><i class="material-icons">add</i></button>

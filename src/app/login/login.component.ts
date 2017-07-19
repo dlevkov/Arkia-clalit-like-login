@@ -3,14 +3,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserModel } from '../models/user.model';
 import { UsersService } from '../services/users.service';
 import { LoginValidators, idLegalityValidator, passwordLegalityValidator } from './login-validators';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'dl-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, private users: UsersService) { }
+  constructor(private fb: FormBuilder, private users: UsersService, private router: Router) { }
 
   ngOnInit() {
     this.createForm();
@@ -34,12 +37,14 @@ export class LoginComponent implements OnInit {
   }
   onSubmit() {
     const currentUser = new UserModel();
-    currentUser.id = this.loginForm.value('id');
-    currentUser.password = this.loginForm.value('password');
+    currentUser.id = this.loginForm.controls['id'].value;
+    currentUser.password = this.loginForm.controls['password'].value;
+
+    console.log('submit with:', currentUser);
+
     const result = this.users.tryLogIn(currentUser.id, currentUser.password);
     if (result) {
-      this.clearForm();
-
+      this.router.navigate(['/users']);
     } else {
       this.loginForm.setErrors({ 'submitError': true });
     }
