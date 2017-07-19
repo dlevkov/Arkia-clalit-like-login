@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user.model';
 import { isNull, isNullOrUndefined } from 'util';
 import { LoggedUser } from '../models/logged-user.model';
-// import { Observable } from 'rxjs/Observable';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
 
 @Injectable()
 export class UsersService {
-  private users: LoggedUser[] =
+  users: LoggedUser[] =
   [
     { id: '313948838', password: '12345678', LoggedIn: false, firstName: 'Denis', lastName: 'Levkov', eMail: 'dlevkov@gmail.com' },
     { id: '123456782', password: '12345687', LoggedIn: false, firstName: 'Rob', lastName: 'Bot', eMail: 'someone@somewhere.com' }
@@ -26,8 +26,8 @@ export class UsersService {
     this.users.push(tmpUser);
   }
 
-  public getUsers(): Observable<UserModel[]> {
-    return Observable.of(this.users);
+  public getUsers(): Observable<LoggedUser> {
+    return Observable.from(this.users);
   }
 
   public updateUser(user: UserModel) {

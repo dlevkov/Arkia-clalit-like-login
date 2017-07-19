@@ -1,8 +1,8 @@
 <h1>Users List</h1>
 <div layout="row" flex>
   <div layout="row" flex>
-    <div class="parent" layout="row" *ngFor='let user of users' flex>
-      <dl-user-card [user]="user" (deleteUser)="deleteUserById($event)" (editUser)="navigateToEditUser($event)"></dl-user-card>
+    <div class="parent" layout="row" flex>
+      <dl-user-card [user]="user" *ngFor="let user of users" (deleteUser)="deleteUserById($event)" (editUser)="navigateToEditUser($event)"></dl-user-card>
     </div>
   </div>
 </div>

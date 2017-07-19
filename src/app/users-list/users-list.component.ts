@@ -16,12 +16,23 @@ export class UsersListComponent implements OnInit, OnDestroy {
   private _subscriber: Subscription;
   constructor(private _service: UsersService, private router: Router) { }
 
+  public navigateToEditUser(userId: string) {
+    this.router.navigate(['user', userId]);
+  }
+  public deleteUserById(userId: string) {
+    this._service.deleteUser(userId);
+  }
+
   ngOnInit() {
     this._subscriber = this._service.getUsers()
-      .distinctUntilChanged()
-      .subscribe(users => {
-        this.users.push(...users);
-      });
+      .subscribe(
+      (x: UserModel) => {
+        console.log('onNext:', x);
+        this.users.push(x);
+      },
+      e => console.log('onError: %s', e),
+      () => console.log('onCompleted')
+      );
   }
   ngOnDestroy(): void {
     this._subscriber.unsubscribe();
@@ -29,10 +40,5 @@ export class UsersListComponent implements OnInit, OnDestroy {
   navigateToAdd() {
     this.router.navigate(['user']);
   }
-  navigateToEditUser(userId: string) {
-    this.router.navigate(['user', userId]);
-  }
-  deleteUserById(userId: string) {
-    this._service.deleteUser(userId);
-  }
+
 }

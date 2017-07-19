@@ -8,8 +8,8 @@ import { UserModel } from '../models/user.model';
 })
 export class UserCardComponent implements OnInit {
   @Input() user: UserModel;
-  @Output() editUser: EventEmitter<string>;
-  @Output() deleteUser: EventEmitter<string>;
+  @Output() editUser = new EventEmitter<string>();
+  @Output() deleteUser = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() {
