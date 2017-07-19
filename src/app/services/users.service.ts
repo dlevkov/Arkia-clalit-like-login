@@ -3,7 +3,7 @@ import { UserModel } from '../models/user.model';
 import { isNull, isNullOrUndefined } from 'util';
 import { LoggedUser } from '../models/logged-user.model';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/from';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class UsersService {
@@ -21,24 +21,33 @@ export class UsersService {
     this.currentUser = null;
   }
 
-  public addUser(user: UserModel) {
+  public addUser(user: UserModel): Observable<UserModel> {
     const tmpUser = new LoggedUser(user);
     this.users.push(tmpUser);
+    return Observable.of(this.getUserById(user.id));
   }
 
-  public getUsers(): Observable<LoggedUser> {
-    return Observable.from(this.users);
+  public getUsers(): Observable<LoggedUser[]> {
+    return Observable.of(this.users);
   }
 
-  public updateUser(user: UserModel) {
+  public updateUser(user: UserModel): Observable<UserModel> {
     // tslint:disable-next-line:triple-equals
     const index = this.users.findIndex(us => us.id == user.id);
     this.users[index] = new LoggedUser(user);
+    return Observable.of(this.getUserById(user.id));
   }
-  public deleteUser(userId: string) {
+
+  public deleteUser(userId: string): Observable<UserModel> {
+    console.log('delete on:', userId);
+    console.log('users before:', this.users.length);
     // tslint:disable-next-line:triple-equals
-    this.users = this.users.filter(us => us.id != userId);
+    const index = this.users.findIndex(us => us.id == userId);
+    this.users.splice(index, 1);
+    console.log('users after:', this.users.length);
+    return Observable.of(null);
   }
+
   logIn(user: UserModel): void {
     // tslint:disable-next-line:triple-equals
     const index = this.users.findIndex(us => us.id == user.id);
@@ -63,6 +72,6 @@ export class UsersService {
     console.log('get user by id with:', id);
     console.log('users:', this.users);
     // tslint:disable-next-line:triple-equals
-    return this.users.filter(user => user.id == id)[0];
+    return this.users.find(user => user.id == id);
   }
 }

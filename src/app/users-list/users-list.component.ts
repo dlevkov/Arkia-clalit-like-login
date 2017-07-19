@@ -20,19 +20,15 @@ export class UsersListComponent implements OnInit, OnDestroy {
     this.router.navigate(['user', userId]);
   }
   public deleteUserById(userId: string) {
-    this._service.deleteUser(userId);
+    this._service.deleteUser(userId).subscribe((X) => {
+      this.users = this.users.filter(x => x.id !== userId);
+    });
   }
 
   ngOnInit() {
-    this._subscriber = this._service.getUsers()
-      .subscribe(
-      (x: UserModel) => {
-        console.log('onNext:', x);
-        this.users.push(x);
-      },
-      e => console.log('onError: %s', e),
-      () => console.log('onCompleted')
-      );
+    this._service.getUsers().subscribe(x => {
+      this.users = x;
+    });
   }
   ngOnDestroy(): void {
     this._subscriber.unsubscribe();
